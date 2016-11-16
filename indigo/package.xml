@@ -20,7 +20,7 @@
   <buildtool_depend version_gte="0.6.18">catkin</buildtool_depend>
   <build_depend version_gte="0.1.15">catkin_pip</build_depend>
 
-  <depend version_gte="0.10.1">flask</depend>
+  <depend version_gte="0.10.1">python-flask</depend>
   <depend version_gte="1.5.2">python-six</depend>
 
   <export>
