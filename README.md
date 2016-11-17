@@ -46,3 +46,7 @@ Versions of tools used:
 
 # flask-cors-rosrelease
 Releasing https://github.com/corydolphin/flask-cors.git on ROS
+
+| Indigo | Jade | Kinetic |
+|:------:|:----:|:-------:|
+| [![Build Status](https://travis-ci.org/asmodehn/flask-cors-rosrelease.svg?branch=release%2Findigo%2Fflask_cors)](https://travis-ci.org/asmodehn/flask-cors-rosrelease) | [![Build Status](https://travis-ci.org/asmodehn/flask-cors-rosrelease.svg?branch=release%2Fjade%2Fflask_cors)](https://travis-ci.org/asmodehn/flask-cors-rosrelease) | [![Build Status](https://travis-ci.org/asmodehn/flask-cors-rosrelease.svg?branch=release%2Fkinetic%2Fflask_cors)](https://travis-ci.org/asmodehn/flask-cors-rosrelease) |
