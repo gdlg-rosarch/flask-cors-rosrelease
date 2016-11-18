@@ -1,37 +1,45 @@
-sudo: false
-cache:
-- pip
-language: python
-python:
-  - '2.6'
-  - '2.7'
-  - '3.3'
-  - '3.4'
-  - '3.5'
-  - pypy
+sudo: required
+dist: trusty
+language: generic
+
+branches:
+  except:
+    - /^rpm/jade/trusty/.*$/  # not testing rpm builds in trusty
+    - /^debian/jade/trusty/.*$/ # not testing pacakge building here (ROS buildfarm will do it)
+
+  only:
+    # We can test release or upstream after patches have been applied
+    - /^release/.*$/ 
+    - upstream 
+
+# this is a third party package, we check only usual catkin builds.
+# Let the ros buildfarm check the actual deb package build.
 
 env:
-- FLASK=0.10.1
-- FLASK=0.10
+  # This will check any ROS distro supported on this OS
+  # checking devel and install separately so that they don't influence each other (dependencies, path, env, etc.)
+  - CI_ROS_DISTRO=jade ROS_FLOW=devel
+  - CI_ROS_DISTRO=jade ROS_FLOW=install
 
 install:
-  - pip install -U setuptools pep8 six coverage docutils pygments flask==$FLASK
+# Add ROS repositories
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros-shadow-fixed/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
+  - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+  - sudo apt-get update
+# Install ROS base
+  - sudo apt-get install ros-$CI_ROS_DISTRO-ros-base -y
+# Install and initialize rosdep
+  - sudo apt-get install python-rosdep -y
+  - sudo `which rosdep` init
+  - rosdep update
+# Use rosdep to install pyros-setup's dependencies
+  - rosdep install --default-yes --from-paths ./ --rosdistro $CI_ROS_DISTRO
 
 script:
-  - coverage erase
-  - nosetests --with-coverage --cover-package=flask_cors
-  - python setup.py clean build install
+  # full ROS setup, build and test
+  # rospack find is TMP. debugging travis env here...
+  - source /opt/ros/$CI_ROS_DISTRO/setup.bash && rospack profile
+  - bash travis_checks.sh
 
-after_success:
-  - pep8 flask_cors.py
-
-deploy:
-  provider: pypi
-  user: CoryDolphin
-  password:
-    secure: c/z1OYmniNlJ7F7G+TipOlJfVLCEz0F09JCJJ4+TPB/DTxajxarMEygX/LrvBOLvbe1EvAKO9p/SOagAul00YXU/rb2i1k1tJnKF2A6KKSLOsZbTcGWNcInOaLKql4Cv8Ts1cOfMiTVHBQLR+1FCw+IuZ44N+KhF0tsFOejEmRc=
-  distributions: "sdist bdist_wheel"
-  on:
-    tags: true
-    repo: corydolphin/flask-cors
-    condition: $TRAVIS_PYTHON_VERSION != *2.6* # Ensures we release a 2.7X wheel
+notifications:
+  email: false
