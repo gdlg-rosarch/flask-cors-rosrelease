@@ -1,3 +1,26 @@
+## flask_cors (jade) - 3.0.2-1
+
+The packages in the `flask_cors` repository were released into the `jade` distro by running `/usr/bin/bloom-release --rosdistro jade --track jade flask_cors` on `Thu, 23 Mar 2017 02:25:45 -0000`
+
+The `flask_cors` package was released.
+
+Version of package(s) in repository `flask_cors`:
+
+- upstream repository: https://github.com/corydolphin/flask-cors.git
+- release repository: https://github.com/asmodehn/flask-cors-rosrelease.git
+- rosdistro version: `3.0.2-0`
+- old version: `3.0.2-0`
+- new version: `3.0.2-1`
+
+Versions of tools used:
+
+- bloom version: `0.5.25`
+- catkin_pkg version: `0.3.1`
+- rosdep version: `0.11.5`
+- rosdistro version: `0.6.1`
+- vcstools version: `0.1.39`
+
+
 ## flask_cors (jade) - 3.0.2-0
 
 The packages in the `flask_cors` repository were released into the `jade` distro by running `/usr/bin/bloom-release --rosdistro jade --track jade flask_cors` on `Fri, 18 Nov 2016 08:59:33 -0000`
