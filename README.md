@@ -1,3 +1,26 @@
+## flask_cors (kinetic) - 3.0.3-1
+
+The packages in the `flask_cors` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release --rosdistro kinetic --track kinetic flask_cors` on `Fri, 13 Apr 2018 12:53:35 -0000`
+
+The `flask_cors` package was released.
+
+Version of package(s) in repository `flask_cors`:
+
+- upstream repository: https://github.com/corydolphin/flask-cors.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `3.0.3-0`
+- new version: `3.0.3-1`
+
+Versions of tools used:
+
+- bloom version: `0.6.4`
+- catkin_pkg version: `0.4.1`
+- rosdep version: `0.12.2`
+- rosdistro version: `0.6.8`
+- vcstools version: `0.1.40`
+
+
 ## flask_cors (kinetic) - 3.0.3-0
 
 The packages in the `flask_cors` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release --rosdistro kinetic --track kinetic flask_cors` on `Fri, 13 Apr 2018 12:33:36 -0000`
